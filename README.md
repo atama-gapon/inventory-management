@@ -1,0 +1,2 @@
+# inventory-management
+Djangoを用いた在庫管理Webアプリケーション
