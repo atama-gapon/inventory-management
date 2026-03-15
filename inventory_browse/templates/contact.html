@@ -1,0 +1,51 @@
+{% extends "base-card.html" %}
+
+{% block title %}お問い合わせ{% endblock title %}
+
+{% block card_header %}お問い合わせ{% endblock card_header %}
+
+{% block card_body %}
+
+    <!-- messages（送信完了）があれば -->
+    {% if messages %}
+    <ul class="list-unstyled" style="list-style: none;">
+        {% for message in messages %}
+        <!-- 「お問い合わせは正常に送信されました。」が表示される -->
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+            {{message}}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% comment %} {{ form.as_p }} {% endcomment %}
+
+    {% comment %} <div class="form-floating mb-3">
+        <input type="text" name="username" class="form-control" id="id_username" autocapitalize="none" autocomplete="username" placeholder="ユーザー名">
+        <label for="id_username">ユーザー名</label> 
+    </div> {% endcomment %}
+
+    <div class="form-floating mb-3">
+        <input type="text" name="name" class="form-control" id="id_name" autocapitalize="none" autocomplete="name" placeholder="ユーザー名">
+        <label for="id_name">ユーザー名</label> 
+    </div>
+
+    <div class="form-floating mb-3">
+        <input name="email" class="form-control" id="id_email" type="email" placeholder="メールアドレス">
+        <label for="id_email">メールアドレス</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input name="title" class="form-control" id="id_title" type="text" placeholder="件名">
+        <label for="id_title">件名</label>
+    </div>
+
+    <!-- 参考リンク -->
+    <!--  https://getbootstrap.jp/docs/5.3/forms/floating-labels/-->
+    <div class="form-floating mb-3">
+        <textarea  style="height: 150px" name="message" class="form-control" id="id_message" type="text" placeholder="お問い合わせ内容"></textarea>
+        <label for="id_message">お問い合わせ内容</label>
+    </div>
+{% endblock card_body %}
+
+{% block card_anchor %}<a class="small" href={% url "inventory_browse:home" %}>ホームに戻る</a>{% endblock card_anchor %}

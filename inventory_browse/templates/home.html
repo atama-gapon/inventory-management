@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}ホーム{% endblock title %}
+
+{% block main %}
+    <main>
+        <!-- Page header with logo and tagline-->
+        <header class="py-5 bg-light border-bottom mb-4">
+            <div class="container">
+                <div class="text-center my-5">
+                    <h1 class="fw-bolder">在庫一覧</h1>
+                    <!-- 参考リンク -->
+                    <!-- https://note.com/takuya814/n/n997909c4f89e -->
+                    {% if request.GET.search_word %}
+                    <p class="lead mb-0">検索ワード：{{request.GET.search_word}}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </header>
+
+<!-- 参考リンク -->
+<!-- https://websae.net/twitter-bootstrap-grid-system-21060224/ -->
+<!-- https://www.tohoho-web.com/bootstrap5/layout.html -->
+
+        <!-- Page content-->
+        <div class="container">
+            <div class="row-cols-auto">
+                <!-- Blog entries-->
+                <div class="col-auto">
+                    <!-- ここからforループをしていく予定 -->
+                    <!-- Nested row for non-featured blog posts-->
+                    <div class="row row-cols-auto">
+                        {% for record in object_list %}
+                        <div class="col-lg-3">
+                            <!-- Blog post-->
+                            {% comment %} <div class="card border-secondary mb-4"> {% endcomment %}
+                            <div class="card mb-4">
+
+                                {% comment %} <a href="#!"><img class="img-fluid" src="{{ record.image1.url }}" style="aspect-ratio: 16/9; overflow: hidden;"></a> {% endcomment %}
+
+                                <!-- 参考リンク -->
+                                <!-- https://web.alfactory.co.jp/topics/2024/01/30/4906/#%e3%82%a2%e3%82%b9%e3%83%9a%e3%82%af%e3%83%88%e6%af%94%e3%81%a8%e3%81%af -->
+                                <div style="aspect-ratio: 16/9; overflow: hidden;"><a href="#!"><img class="img-fluid" src="{{ record.image1.url }}" style="width: 100%; height: 100%; object-fit: cover;"></a></div>
+
+                                <div class="card-header"><div class="small text-muted">最終更新：{{record.updated_at}}</div></div>
+                                <div class="card-body">
+                                    <!-- 参考リンク -->
+                                    <!-- https://getbootstrap.jp/docs/5.3/helpers/text-truncation/ -->
+                                    <h2 class="card-title h4 text-truncate">{{ record.item_name }}</h2>
+                                    {% comment %} <h6 class="card-subtitle mb-2 text-body-secondary">単価：300円</h6> {% endcomment %}
+                                    <p class="card-text text-truncate">{{record.description}}</p>
+                                    {% comment %} <p class="card-text"><small class="text-body-secondary">最終更新{{record.updated_at}}</small></p> {% endcomment %}
+
+                                    <!-- 参考リンク -->
+                                    <!-- https://www.tohoho-web.com/bootstrap/buttons.html -->
+                                    <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                        <a></a>
+                                        <a class="btn btn-sm btn-outline-primary" href="{% url 'inventory_register:detail' record.pk %}">詳細へ →</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    {% include "pagination.html" %}
+
+                </div>
+
+            </div>
+        </div>
+    </main>
+{% endblock main %}

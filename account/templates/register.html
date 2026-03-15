@@ -1,0 +1,39 @@
+{% extends "base-card.html" %}
+
+
+{% block title %}新規登録{% endblock title %}
+
+{% block card_header %}新規登録{% endblock card_header %}
+
+{% block card_body %}
+
+    <!-- 参考リンク -->
+    <!-- https://sleepless-se.net/2018/05/31/django%E3%81%A7form%E3%81%AE%E3%82%A8%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8%E3%82%92%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%81%A7%E5%8F%96%E5%BE%97%E3%81%99/ -->
+
+    <span class="small" style="color: red">{{ form.username.errors }}</span>
+    <div class="form-floating mb-3">
+        <input type="text" name="username" id="id_username" autocapitalize="none" autocomplete="username" class="form-control" placeholder="ユーザー名">
+        <label for="id_username">ユーザー名</label>
+    </div>
+
+    <span class="small" style="color: red">{{ form.email.errors }}</span>
+    <div class="form-floating mb-3">
+        <input name="email" class="form-control" id="id_email" type="email" placeholder="メールアドレス">
+        <label for="id_email">メールアドレス</label>
+    </div>
+
+    <span class="small" style="color: red">{{ form.password1.errors }}</span>
+    <div class="form-floating mb-3">
+        <input name="password1" class="form-control" id="id_password" type="password" placeholder="パスワード">
+        <label for="id_password">パスワード</label>
+    </div>
+
+    <span class="small" style="color: red">{{ form.password2.errors }}</span>
+    <div class="form-floating mb-3">
+        <input name="password2" class="form-control" id="id_password_confirm" type="password" placeholder="パスワード確認">
+        <label for="id_password_confirm">パスワード確認</label>
+    </div>
+
+{% endblock card_body %}
+
+{% block card_anchor %}<a class="small" href={% url "account:login" %}>ログインページに戻る</a>{% endblock card_anchor %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}新規登録：完了{% endblock title %}
+
+{% block main %}
+
+    <main>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 my-5">
+                    <div class="card shadow-lg border-0 rounded-lg mt-5">
+                        <div class="card-header"><h3 class="text-center font-weight-light my-4">新規登録</h3></div>
+                        <div class="card-body">
+                            <!-- 参考リンク -->
+                            <!-- https://teratail.com/questions/319843 -->
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <ul class="list-unstyled" style="list-style: none;">
+                                    <li class="alert alert-success">
+                                        登録が完了しました
+                                    </li>
+                                </ul>
+
+                            <div class="form-floating mb-3">
+                                <input type="text"  id="id_username" autocapitalize="none" autocomplete="username" class="form-control" disabled>
+                                <label for="id_username">ユーザー名</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input  class="form-control" id="id_email" type="email" disabled>
+                                <label for="id_email">メールアドレス</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input  class="form-control" id="id_password" type="password" disabled>
+                                <label for="id_password">パスワード</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input  class="form-control" id="id_password_confirm" type="password" disabled>
+                                <label for="id_password_confirm">パスワード確認</label>
+                            </div>
+
+                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                <a class="small" href={% url "account:login" %}>{% if user.is_authenticated %}ホームに戻る{% else %}ログインページに戻る{% endif %}</a>
+                                <input class="btn btn-primary" type="submit" value="完了" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock main %}

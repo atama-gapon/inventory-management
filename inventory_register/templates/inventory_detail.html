@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}{{object.item_name}}{% endblock title %}
+
+{% block main %}
+    <main>
+        <!-- Product section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    {% comment %} <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg"></div> {% endcomment %}
+                    <!-- 参考リンク -->
+                    <!-- https://getbootstrap.jp/docs/5.0/content/images/ -->
+                    <div class="col-md-6"><img class="img-fluid mb-5 mb-md-0" src="{{object.image1.url}}"></div>
+                    <div class="col-md-6">
+                        <div class="small mb-2">
+                            <span>商品番号: {{object.part_number}}</span>
+                            <span>作成者: {{object.user}}</span>
+                            <span>作成日: {{object.created_at}}</span>
+                            <span>更新日: {{object.updated_at}}</span>
+                        </div>
+                        <h1 class="display-5 fw-bolder">{{object.item_name}}</h1>
+                        <div class="fs-5 mb-5">
+                            <span>単価：{{object.unit_price}}円</span>
+                            <span>在庫数：{{object.inventory_quantity}}個</span>
+                        </div>
+                        <p class="lead">{{object.description}}</p>
+                        
+                        <div class="d-flex">
+
+                            <!-- ログイン中のユーザーとオブジェクトの作成者が一致している場合に表示 -->
+                            {% if request.user == object.user %}  
+                            <a href="{% url 'inventory_register:update' object.pk %}" class="link-primary">編集</a>
+                            <p>　</p>
+                            <!-- 参考リンク -->
+                            <!-- https://se-memorandum.com/modal/ -->
+                            <a  class="link-danger" data-bs-toggle="modal" data-bs-target="#delete-Modal-{{ object.pk }}">削除</a>
+                            {% include 'inventory_delete.html' %}
+                            {% endif %}
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock main %}

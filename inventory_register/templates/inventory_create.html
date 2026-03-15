@@ -1,0 +1,47 @@
+{% extends "base-card.html" %}
+
+{% block title %}商品追加{% endblock title %}
+
+{% block card_header %}商品追加{% endblock card_header %}
+
+{% block card_body %}
+
+        <span class="small" style="color: red">{{ form.part_number.errors }}</span>
+        <div class="form-floating mb-3">
+            <input name="part_number" class="form-control" id="id_part_number" type="text" autocapitalize="none" placeholder="商品番号">
+            <label for="id_part_number">商品番号 ※重複不可</label> 
+        </div>
+
+        <div class="form-floating mb-3">
+            <input name="item_name" class="form-control" id="id_item_name" type="text" autocapitalize="none" autocomplete="item_name" placeholder="商品名">
+            <label for="id_item_name">商品名</label> 
+        </div>
+
+        <!-- 参考リンク -->
+        <!-- https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/input/number -->
+        <div class="form-floating mb-3">
+            <input name="unit_price" class="form-control" id="id_unit_price" type="number" placeholder="単価" min="0">
+            <label for="id_unit_price">単価</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input name="inventory_quantity" class="form-control" id="id_inventory_quantity" type="number" placeholder="単価" min="0">
+            <label for="id_inventory_quantity">在庫数</label>
+        </div>
+
+        <!-- 参考リンク -->
+        <!--  https://getbootstrap.jp/docs/5.3/forms/floating-labels/-->
+        <div class="form-floating mb-3">
+            <textarea  style="height: 150px" name="description" class="form-control" id="id_description" type="text" placeholder="説明文"></textarea>
+            <label for="id_description">説明文</label>
+        </div>
+
+        <!-- 参考リンク -->
+        <!-- https://blog1.mammb.com/entry/2019/12/11/090000 -->
+        <div class="custom-file">
+            <input accept="image/*" name="image1" class="form-control" id="id_image1" type="file" class="custom-file-input">
+        </div>
+
+{% endblock card_body %}
+
+{% block card_anchor %}<a class="small" href={% url "inventory_browse:home" %}>ホームに戻る</a>{% endblock card_anchor %}

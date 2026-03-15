@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}お問い合わせ：完了{% endblock title %}
+
+{% block main %}
+
+    <main>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 my-5">
+                    <div class="card shadow-lg border-0 rounded-lg mt-5">
+                        <div class="card-header"><h3 class="text-center font-weight-light my-4">お問い合わせ</h3></div>
+                        <div class="card-body">
+                            <!-- 参考リンク -->
+                            <!-- https://teratail.com/questions/319843 -->
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <ul class="list-unstyled" style="list-style: none;">
+                                    <li class="alert alert-success">
+                                        メールを送信しました
+                                    </li>
+                                </ul>
+
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="id_name" autocapitalize="none" autocomplete="name" disabled>
+                                    <label for="id_name">ユーザー名</label> 
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="id_email" type="email" disabled>
+                                    <label for="id_email">メールアドレス</label>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="id_title" type="text" disabled>
+                                    <label for="id_title">件名</label>
+                                </div>
+
+                                <!-- 参考リンク -->
+                                <!--  https://getbootstrap.jp/docs/5.3/forms/floating-labels/-->
+                                <div class="form-floating mb-3">
+                                    <textarea  style="height: 150px" class="form-control" id="id_message" type="text" disabled></textarea>
+                                    <label for="id_message">お問い合わせ内容</label>
+                                </div>
+
+                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                <a class="small" href={% url "inventory_browse:home" %}>ホームに戻る</a>
+                                <input class="btn btn-primary" type="submit" value="完了" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock main %}
